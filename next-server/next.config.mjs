@@ -1,13 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // https://nextjs.org/docs/app/api-reference/config/next-config-js/output
   output: "standalone",
-  // https://nextjs.org/docs/app/api-reference/config/next-config-js/serverExternalPackages
-  serverExternalPackages: ["@huggingface/transformers", 'sharp', 'onnxruntime-node', "@xenova/transformers"],
+  serverExternalPackages: [
+    "@huggingface/transformers", // still externalize the library itself
+    "sharp"                      // keep if you need sharp at runtime
+  ],
   webpack: (config) => {
-    config.resolve.fallback = { "onnxruntime-node": false, sharp: false };
+    config.resolve.fallback = {
+      ...config.resolve.fallback,
+      "onnxruntime-node": false,
+      sharp: false,
+    };
+
     return config;
-  }
+  },
 };
 
 export default nextConfig;
