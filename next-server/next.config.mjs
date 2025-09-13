@@ -2,23 +2,23 @@
 const nextConfig = {
   output: "standalone",
 
+  // ✅ This tells Next.js to NOT bundle these into the output, just require() them at runtime
+  serverExternalPackages: [
+    "@huggingface/transformers",
+    "@xenova/transformers",
+    "onnxruntime-node",
+    "sharp",
+  ],
+
   webpack: (config, { isServer }) => {
     if (isServer) {
-      // Replace the entire externals function with one that explicitly excludes onnxruntime-node
-      const originalExternals = config.externals;
-      config.externals = async (context, request, callback) => {
-        if (request === "onnxruntime-node") {
-          // ✅ Prevent webpack from bundling onnxruntime-node
-          return callback(null, "commonjs onnxruntime-node");
-        }
-        if (typeof originalExternals === "function") {
-          return originalExternals(context, request, callback);
-        }
-        callback();
-      };
+      // ✅ Tell webpack to treat onnxruntime-node as an external module
+      config.externals.push("onnxruntime-node");
     }
 
-    // No need for fallback stubbing in server context
+    // Remove any fallback that would stub it out
+    config.resolve.fallback = { sharp: false, "onnxruntime-node": false };
+
     return config;
   },
 };
