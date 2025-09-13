@@ -4,6 +4,10 @@ const nextConfig = {
   output: "standalone",
   // https://nextjs.org/docs/app/api-reference/config/next-config-js/serverExternalPackages
   serverExternalPackages: ["@huggingface/transformers", 'sharp', 'onnxruntime-node', "@xenova/transformers"],
+  webpack: (config) => {
+    config.resolve.fallback = { "onnxruntime-node": false, sharp: false };
+    return config;
+  }
 };
 
 export default nextConfig;
