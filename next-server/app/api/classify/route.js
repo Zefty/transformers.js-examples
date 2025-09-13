@@ -1,6 +1,6 @@
 // https://nextjs.org/docs/app/building-your-application/routing/route-handlers
 
-import { pipeline } from "@xenova/transformers";
+import { pipeline } from "@huggingface/transformers";
 
 // NOTE: We attach the classifier to the global object to avoid unnecessary reloads during development
 const classifier = (globalThis.classifier ??= await pipeline(
