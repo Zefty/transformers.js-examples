@@ -3,7 +3,7 @@ const nextConfig = {
   // https://nextjs.org/docs/app/api-reference/config/next-config-js/output
   output: "standalone",
   // https://nextjs.org/docs/app/api-reference/config/next-config-js/serverExternalPackages
-  serverExternalPackages: ["@huggingface/transformers", 'sharp', 'onnxruntime-node'],
+  serverExternalPackages: ["@huggingface/transformers", 'sharp', 'onnxruntime-node', "@xenova/transformers"],
 };
 
 export default nextConfig;
