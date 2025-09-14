@@ -1,3 +1,5 @@
+import pipeline from "@xenova/transformers";
+
 export async function GET(request) {
   const text = request.nextUrl.searchParams.get("text");
 
@@ -5,7 +7,6 @@ export async function GET(request) {
     return Response.json({ message: "No text provided" }, { status: 400 });
   }
 
-  const { pipeline } = require("@xenova/transformers");
   const classifier = await pipeline(
     "text-classification",
     "Xenova/distilbert-base-uncased-finetuned-sst-2-english",
