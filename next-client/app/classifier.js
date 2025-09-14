@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { pipeline } from "@huggingface/transformers";
+import { pipeline } from "@xenova/transformers";
 
 export default function Classifier() {
   const [text, setText] = useState("I love Transformers.js!");
