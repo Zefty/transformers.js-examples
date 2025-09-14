@@ -5,7 +5,7 @@ export async function GET(request) {
     return Response.json({ message: "No text provided" }, { status: 400 });
   }
 
-  const { pipeline } = require("@huggingface/transformers");
+  const { pipeline } = require("@xenova/transformers");
   const classifier = await pipeline(
     "text-classification",
     "Xenova/distilbert-base-uncased-finetuned-sst-2-english",
