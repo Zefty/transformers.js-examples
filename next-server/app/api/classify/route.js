@@ -1,4 +1,4 @@
-import pipeline from "@xenova/transformers";
+import {pipeline} from "@xenova/transformers";
 
 export async function GET(request) {
   const text = request.nextUrl.searchParams.get("text");
