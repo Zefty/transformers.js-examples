@@ -7,6 +7,12 @@ const nextConfig = {
     "onnxruntime-node",
     "sharp",
   ],
+  webpack: (config) => {
+    config.externals.push("onnxruntime-node");
+    config.resolve.fallback = { sharp: false, "onnxruntime-node": false };
+    return config;
+  }
 };
 
 export default nextConfig;
+  
